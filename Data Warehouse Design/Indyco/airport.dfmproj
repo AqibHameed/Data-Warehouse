@@ -1,0 +1,42 @@
+<project name="airport" id="71f703aa-5d66-4361-907d-9baf584b0fc4" toolversion="3.4.1.0">
+  <datawarehouse>
+    <datamarts>
+      <datamart name="Datamart" id="4ef51323-c1a6-439b-8058-55b2e23517a6">
+        <factschemas>
+          <factschema id="f0e46be9-69d5-4229-b6a1-7ba0b4be59c1" />
+          <factschema id="460a3746-4046-4782-9205-3591751448f8" />
+        </factschemas>
+      </datamart>
+    </datamarts>
+  </datawarehouse>
+  <conformedHierarchies>
+    <conformedHierarchy id="070f12f7-dde8-4cec-b7ed-c301246d701b" />
+    <conformedHierarchy id="a9b87061-a2d2-4640-9cb8-dbbda5029b8f" />
+    <conformedHierarchy id="467412ec-28e7-4596-bd36-8fd21928c380" />
+  </conformedHierarchies>
+  <areas>
+    <area name="Datamart" id="101738fc-6194-4aeb-bfbb-98e008033ad1">
+      <factSchemas>
+        <factschema id="f0e46be9-69d5-4229-b6a1-7ba0b4be59c1" />
+      </factSchemas>
+    </area>
+  </areas>
+  <customProperties>
+    <attributes />
+    <measures />
+    <facts />
+  </customProperties>
+  <linkedProperties />
+  <projectOptions>
+    <logicModelingProfile name="starschema" isEditable="false" />
+    <logicModelingNamePrefixes DimensionTableNamePrefix="DT_" FactTableNamePrefix="FT_" BridgeTableNamePrefix="BT_" NavigationTableNamePrefix="NAV_" JunkTableNamePrefix="JT_" PrimaryKeyNamePrefix="PK_" ForeignKeyNamePrefix="FK_" TableIdNamePrefix="ID_" ConformedDimensionViewNamePrefix="DTV_" TemporalScenarioRollbackFromFieldName="FROM" TemporalScenarioRollbackToFieldName="TO" TemporalScenarioRollbackMasterFieldName="MASTER" />
+    <logicalModelingDefaultTypes>
+      <attributes name="VARCHAR" length="255" scale="-1" precision="-1" />
+      <measures name="DECIMAL" length="-1" scale="3" precision="18" />
+      <surrogates name="INT" length="-1" scale="-1" precision="-1" />
+      <temporalScenarioRollbackFromType name="DATE" length="-1" scale="-1" precision="-1" />
+      <temporalScenarioRollbackToType name="DATE" length="-1" scale="-1" precision="-1" />
+      <temporalScenarioRollbackMasterType name="INT" length="-1" scale="-1" precision="-1" />
+    </logicalModelingDefaultTypes>
+  </projectOptions>
+</project>

@@ -1,0 +1,89 @@
+--Schema of the Tables
+
+CREATE TABLE "AQIB.HAMEED".AIRCRAFTDT(
+   ID_REGISTRATION_CODE CHAR(6),
+   MODEL VARCHAR2 (255 CHAR) NOT NULL,
+   MANUFACTURER VARCHAR2 (255 CHAR) NOT NULL,
+   PRIMARY KEY (ID_REGISTRATION_CODE)
+);
+
+CREATE TABLE "AQIB.HAMEED".TIMEDT(
+   ID_TIME CHAR(6),
+   DATE_DAY DATE NOT NULL,
+   CALENDAR_MONTH VARCHAR2 (25 CHAR) NOT NULL,
+   CALENDAR_YEAR VARCHAR2 (25 CHAR) NOT NULL,
+   PRIMARY KEY (ID_TIME)
+);
+
+
+
+CREATE TABLE "AQIB.HAMEED".AircraftUsageFT(
+   aircraftCodeID CHAR(6),
+   timeID CHAR(6),
+   scheduledOutOfService NUMBER(3),
+   unScheduledOutOfService NUMBER(3),
+   aircrafInService NUMBER(3),
+   flightHours NUMBER(3),
+   flightCycles NUMBER(3),
+   delays NUMBER(3),
+   delayedMinutes NUMBER(3),
+   cancellations NUMBER(2),
+   PRIMARY KEY (aircraftCodeID, timeID),
+   FOREIGN KEY (aircraftCodeID) REFERENCES AIRCRAFTDT(ID_REGISTRATION_CODE),
+   FOREIGN KEY (timeID) REFERENCES TIMEDT(ID_TIME)
+
+);
+
+CREATE TABLE "AQIB.HAMEED".REPORTDT (
+   ID_REPORT CHAR(6),  
+   ID_PERSON CHAR(6),  
+   PERSON_AIRPORT CHAR(10),
+   role CHAR(1) CHECK (role IN ('P','M')) NOT NULL,
+   PRIMARY KEY (ID_REPORT)
+);
+
+CREATE TABLE "AQIB.HAMEED".LOGBOOKFT(
+   aircraftCodeID CHAR(6),
+   timeID CHAR(6),
+   reportID CHAR(6),
+   counter NUMBER(3),
+   PRIMARY KEY (aircraftCodeID, timeID, reportID),
+   FOREIGN KEY (aircraftCodeID) REFERENCES AIRCRAFTDT(ID_REGISTRATION_CODE),
+   FOREIGN KEY (timeID) REFERENCES TIMEDT(ID_TIME),
+   FOREIGN KEY (reportID) REFERENCES REPORTDT(ID_REPORT)
+
+);
+
+-- INSERT DATA in the tables
+
+--INSERT INTO AIRCRAFTDT (ID_REGISTRATION_CODE,MODEL,MANUFACTURER) VALUES (1,'737','Airbus');
+-- INSERT INTO AIRCRAFTDT (ID_REGISTRATION_CODE,MODEL,MANUFACTURER) VALUES (2,'777','Boeing');
+--INSERT INTO AIRCRAFTDT (ID_REGISTRATION_CODE,MODEL,MANUFACTURER) VALUES (3,'777','Boeing');
+--INSERT INTO AIRCRAFTDT (ID_REGISTRATION_CODE,MODEL,MANUFACTURER) VALUES (4,'737','Airbus');
+--INSERT INTO AIRCRAFTDT (ID_REGISTRATION_CODE,MODEL,MANUFACTURER) VALUES (5,'767','Boeing');
+
+-- INSERT INTO TIMEDT (ID_TIME, DATE_DAY, CALENDAR_MONTH, CALENDAR_YEAR) VALUES (1,TO_DATE('24/10/2020', 'DD/MM/YYYY'),'OCTOBER','2020');
+--INSERT INTO TIMEDT (ID_TIME, DATE_DAY, CALENDAR_MONTH, CALENDAR_YEAR) VALUES (2,TO_DATE('25/10/2019', 'DD/MM/YYYY'),'OCTOBER','2019');
+-- INSERT INTO TIMEDT (ID_TIME, DATE_DAY, CALENDAR_MONTH, CALENDAR_YEAR) VALUES (3,TO_DATE('26/10/2020', 'DD/MM/YYYY'),'OCTOBER','2020');
+-- INSERT INTO TIMEDT (ID_TIME, DATE_DAY, CALENDAR_MONTH, CALENDAR_YEAR) VALUES (4,TO_DATE('27/9/2020', 'DD/MM/YYYY'),'SEPTEMBER','2020');
+-- INSERT INTO TIMEDT (ID_TIME, DATE_DAY, CALENDAR_MONTH, CALENDAR_YEAR) VALUES (5,TO_DATE('08/11/2020', 'DD/MM/YYYY'),'NOVEMBER','2020');
+
+-- INSERT INTO AircraftUsageFT (aircraftCodeID,timeID,aircrafInService,unScheduledOutOfService,scheduledOutOfService,flightHours,flightCycles,delays,delayedMinutes,cancellations) VALUES (1,1,0.5,0.5,0,2,8,1,15,5);
+-- INSERT INTO AircraftUsageFT (aircraftCodeID,timeID,aircrafInService,unScheduledOutOfService,scheduledOutOfService,flightHours,flightCycles,delays,delayedMinutes,cancellations) VALUES (2,2,0,0,1,4,9,1,30,6);
+-- INSERT INTO AircraftUsageFT (aircraftCodeID,timeID,aircrafInService,unScheduledOutOfService,scheduledOutOfService,flightHours,flightCycles,delays,delayedMinutes,cancellations) VALUES (3,3,0,1,0,5,7,1,40,9);
+-- INSERT INTO AircraftUsageFT (aircraftCodeID,timeID,aircrafInService,unScheduledOutOfService,scheduledOutOfService,flightHours,flightCycles,delays,delayedMinutes,cancellations) VALUES (4,4,0,0.3,0.7,8,10,1,25,7);
+-- INSERT INTO AircraftUsageFT (aircraftCodeID,timeID,aircrafInService,unScheduledOutOfService,scheduledOutOfService,flightHours,flightCycles,delays,delayedMinutes,cancellations) VALUES (5,5,0,0.4,0.6,5,7,1,20,4);
+
+--INSERT INTO REPORTDT (ID_REPORT,ID_PERSON,PERSON_AIRPORT,role) VALUES (1,1,'Airbus','M');
+-- INSERT INTO REPORTDT (ID_REPORT,ID_PERSON,PERSON_AIRPORT,role) VALUES (2,1,'Airbus','M');
+--INSERT INTO REPORTDT (ID_REPORT,ID_PERSON,PERSON_AIRPORT,role) VALUES (3,2,'Boeing','P');
+--INSERT INTO REPORTDT (ID_REPORT,ID_PERSON,PERSON_AIRPORT,role) VALUES (4,3,'Airbus','M');
+--INSERT INTO REPORTDT (ID_REPORT,ID_PERSON,PERSON_AIRPORT,role) VALUES (5,4,'Boeing','P');
+
+-- INSERT INTO LOGBOOKFT (aircraftCodeID,timeID,reportID,counter) VALUES (1,1,1,5);
+-- INSERT INTO LOGBOOKFT (aircraftCodeID,timeID,reportID,counter) VALUES (2,2,2,10);
+-- INSERT INTO LOGBOOKFT (aircraftCodeID,timeID,reportID,counter) VALUES (3,3,3,7);
+-- INSERT INTO LOGBOOKFT (aircraftCodeID,timeID,reportID,counter) VALUES (4,4,4,12);
+-- INSERT INTO LOGBOOKFT (aircraftCodeID,timeID,reportID,counter) VALUES (5,5,5,15);
+
+
